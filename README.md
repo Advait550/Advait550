@@ -5,7 +5,7 @@ Embedded Systems & IoT Engineer | Designing Intelligent Edge Systems with ESP32,
 
 # 💫 About Me:
 ### 🔭 I’m currently working on<br>
-IoT Based Incident Detection & Path Tracking System (ESP32 + MPU6050 + GPS + GSM)<br><br>Backend logic for embedded + IoT integrations<br><br>Strengthening DSA & system-level thinking<br><br> 
+Indoor Delievery Bot <br><br>Backend logic for embedded + IoT integrations<br><br>Strengthening DSA & system-level thinking<br><br> 
 ### 👯 I’m looking to collaborate on<br><br>
 Embedded systems projects<br><br>IoT + hardware-software integration<br><br>Automation and real-world problem-solving systems<br><br> 
 ### 🤝 I’m looking for help with<br><br>
