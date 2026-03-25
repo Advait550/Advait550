@@ -1,6 +1,6 @@
 <h1 align="center">I'm Advait Kulkarni</h1>
 <h3 align="center">
-Embedded Systems & IoT Engineer | Designing Intelligent Edge Systems with ESP32, Sensors & GSM | Hardware–Software Integration | GATE Aspirant
+Embedded Systems & IoT Engineer | Designing Intelligent Edge Systems with ESP32, Sensors & GSM | Hardware–Software Integration
 </h3> <br>
 
 # 💫 About Me:
