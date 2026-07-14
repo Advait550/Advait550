@@ -12,10 +12,6 @@ Embedded systems projects<br><br>IoT + hardware-software integration<br><br>Auto
 Optimizing low-power IoT systems<br><br>Advanced system design & scalable backend architecture<br><br>Research paper writing in embedded/IoT domains<br><br>
 ### 🌱 I’m currently learning<br><br>
 Advanced ESP32 programming<br><br>Digital Electronics & GATE preparation<br><br>Data Structures (trees & graphs)<br><br>Efficient system design principles<br><br>
-### 💬 Ask me about<br><br>
-Arduino, ESP32, sensors & GSM modules<br><br>Hardware debugging<br><br>Building mini-projects from scratch<br><br>Balancing GATE prep with project work<br><br>
-### ⚡ Fun fact<br><br>
-I enjoy turning random real-world problems into working prototypes using code + circuits.<br><br>I build hardware projects and cook my own protein meals to survive engineering life.urrently learning<br>
 
 
 ## 🌐 Socials:
