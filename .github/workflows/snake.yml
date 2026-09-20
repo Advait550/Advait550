@@ -1,8 +1,8 @@
-name: Generate Contribution Snake
+name: Generate Profile Assets
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 */12 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -14,10 +14,11 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Generate snake
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate contribution snake
         uses: Platane/snk@v3
         with:
           github_user_name: Advait550
@@ -25,7 +26,22 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - name: Publish snake
+      - name: Generate GitHub trophies
+        uses: soulteary/github-profile-trophy-action@v1.0.0
+        with:
+          options: "username=Advait550&theme=tokyonight&no-bg=true&no-frame=true&margin-w=8"
+          path: dist/github-trophies.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate contribution activity graph
+        uses: maurodesouza/github-readme-activity-graph-action@v1
+        with:
+          username: Advait550
+          options: "theme=tokyo-night&hide_border=true&area=true"
+          output_path: dist/github-activity-graph.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish profile assets
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
