@@ -107,20 +107,22 @@ fun_fact    : "I like reverse-engineering everyday devices to understand the emb
 
 #### 🚨 [Incident Detection & Path Tracking using ESP32](https://github.com/Advait550/Incident_Detection_Using_ESP32)
 
-> Real-time embedded safety system using motion sensing, GPS and GSM communication.
+> A real-time embedded safety system that locally detects abnormal motion events using an ESP32 and MPU6050, then acquires GPS coordinates and sends emergency SMS alerts through a SIM800L GSM module. The system also logs sensor data to an SD card and performs the detection logic at the edge, reducing dependence on cloud connectivity for the critical decision path.
 
 <p align="left">
   <img src="https://img.shields.io/badge/ESP32-E7352C?style=flat-square&logo=espressif&logoColor=white">
   <img src="https://img.shields.io/badge/MPU6050-4364F7?style=flat-square">
   <img src="https://img.shields.io/badge/GPS-1A73E8?style=flat-square">
   <img src="https://img.shields.io/badge/GSM-SIM800L-0052D4?style=flat-square">
+  <img src="https://img.shields.io/badge/SD%20Card-0A0A0A?style=flat-square">
   <img src="https://img.shields.io/badge/Embedded%20C-00599C?style=flat-square&logo=c&logoColor=white">
 </p>
 
-- 📡 Local incident detection using MPU6050 motion data
-- 🛰️ GPS coordinate acquisition and location sharing
-- 📱 GSM/SIM800L SMS emergency alerts
-- 💾 SD-card logging and serial debugging
+- 📡 Local incident detection from accelerometer and gyroscope data
+- 🛰️ GPS coordinate acquisition and Google Maps location sharing
+- 📱 GSM/SIM800L emergency SMS alerts
+- 💾 SD-card data logging and serial diagnostics
+- 🔄 I²C and UART peripheral communication
 - ⚡ Edge-based decision making on the ESP32
 
 #### 🚗 [Smart Parking System](https://github.com/Advait550/SmartParkingSystem)
@@ -155,6 +157,25 @@ fun_fact    : "I like reverse-engineering everyday devices to understand the emb
 - ⚙️ Servo-controlled dispensing mechanism
 - 🔊 Audible reminders and LCD interface
 - 🛡️ Manual override and fail-safe-oriented operation
+
+#### 🤖 Mecanum Wheel-Based Robotic Arm
+
+> Mobile robotic manipulation system combining omnidirectional mecanum-wheel mobility with a 4-DOF servo-driven robotic arm.
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Arduino-00878F?style=flat-square&logo=arduino&logoColor=white">
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white">
+  <img src="https://img.shields.io/badge/Robotics-4364F7?style=flat-square">
+  <img src="https://img.shields.io/badge/Mecanum%20Drive-0052D4?style=flat-square">
+</p>
+
+- 🛞 Omnidirectional movement using four mecanum wheels
+- 🦾 4-DOF servo-controlled robotic arm and gripper
+- 🎛️ Dual-controller architecture for locomotion and manipulation
+- ⚙️ PWM-based motor and servo control
+- 🏆 Demonstrated as an applied robotics prototype
+
+> **Repository migration:** The original project repository is being moved from a shared/team-owned repository into my GitHub profile. A personal repository link will be added here once the migration is completed.
 
 ---
 
