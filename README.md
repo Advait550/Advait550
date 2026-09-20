@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://www.linkedin.com/in/advait-kulkarni-2617392b4/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="https://advait550.github.io/Advait550/"><img src="https://img.shields.io/badge/Portfolio-8CFF6A?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Portfolio"></a>
-  <a href="mailto:kulkarniadvait108@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kulkarniadvait108@gmail.com&su=Portfolio%20Inquiry"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
   <a href="https://leetcode.com/u/6tHhYYyrp7/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" alt="LeetCode"></a>
   <a href="https://www.hackerrank.com/profile/kulkarniadvait12"><img src="https://img.shields.io/badge/HackerRank-2EC866?style=for-the-badge&logo=hackerrank&logoColor=white" alt="HackerRank"></a>
 </p>
