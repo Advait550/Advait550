@@ -26,6 +26,15 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
+      - name: Fix generated asset directory permissions
+        run: |
+          if [ -d dist ]; then
+            sudo chown -R "$(id -u):$(id -g)" dist
+            sudo chmod -R u+rwX dist
+          else
+            mkdir -p dist
+          fi
+
       - name: Generate GitHub trophies
         uses: soulteary/github-profile-trophy-action@v1.0.0
         with:
