@@ -183,10 +183,22 @@ fun_fact    : "I like reverse-engineering everyday devices to understand the emb
   <img src="https://leetcard.jacoblin.cool/6tHhYYyrp7?ext=contest&theme=dark" />
 </p>
 
+### 🏆 GitHub Trophies
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=Advait550&theme=tokyonight&no-frame=true&no-bg=true&margin-w=8" />
+</p>
+
 ### 🐍 Contribution Snake
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Advait550/Advait550/output/github-contribution-grid-snake-dark.svg" />
+</p>
+
+### 📈 Contribution Activity
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Advait550&theme=tokyo-night&hide_border=true&area=true" alt="Contribution Activity Graph" />
 </p>
 
 ### 📊 GitHub Stats
