@@ -107,7 +107,7 @@ fun_fact    : "I like reverse-engineering everyday devices to understand the emb
 
 #### 🚨 [Incident Detection & Path Tracking using ESP32](https://github.com/Advait550/Incident_Detection_Using_ESP32)
 
-> A real-time embedded safety system that locally detects abnormal motion events using an ESP32 and MPU6050, then acquires GPS coordinates and sends emergency SMS alerts through a SIM800L GSM module. The system also logs sensor data to an SD card and performs the detection logic at the edge, reducing dependence on cloud connectivity for the critical decision path.
+> A real-time embedded safety system that locally detects abnormal motion events using an ESP32 and MPU6050, then acquires GPS coordinates and sends emergency SMS alerts through a SIM800L GSM module. The system also logs sensor data to an SD card and performs the detection logic at the edge.
 
 <p align="left">
   <img src="https://img.shields.io/badge/ESP32-E7352C?style=flat-square&logo=espressif&logoColor=white">
@@ -158,9 +158,9 @@ fun_fact    : "I like reverse-engineering everyday devices to understand the emb
 - 🔊 Audible reminders and LCD interface
 - 🛡️ Manual override and fail-safe-oriented operation
 
-#### 🤖 Mecanum Wheel-Based Robotic Arm
+#### 🤖 [Mecanum Wheel-Based Robotic Arm](https://github.com/Advait550/Mecanum-Wheel-based-Robotic-Arm)
 
-> Mobile robotic manipulation system combining omnidirectional mecanum-wheel mobility with a 4-DOF servo-driven robotic arm.
+> Mobile robotic manipulation system combining omnidirectional mecanum-wheel mobility with a servo-driven robotic arm.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Arduino-00878F?style=flat-square&logo=arduino&logoColor=white">
@@ -174,8 +174,6 @@ fun_fact    : "I like reverse-engineering everyday devices to understand the emb
 - 🎛️ Dual-controller architecture for locomotion and manipulation
 - ⚙️ PWM-based motor and servo control
 - 🏆 Demonstrated as an applied robotics prototype
-
-> **Repository migration:** The original project repository is being moved from a shared/team-owned repository into my GitHub profile. A personal repository link will be added here once the migration is completed.
 
 ---
 
