@@ -1,0 +1,51 @@
+name: Daily Profile Maintenance
+
+on:
+  schedule:
+    # 10:30 PM IST = 17:00 UTC
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-profile-maintenance
+  cancel-in-progress: false
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Record daily activity
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p activity
+          DATE="$(TZ=Asia/Kolkata date '+%Y-%m-%d')"
+          FILE="activity/daily-log.md"
+
+          touch "$FILE"
+
+          if grep -q "^- ${DATE}:" "$FILE"; then
+            echo "Today's entry already exists."
+            exit 0
+          fi
+
+          {
+            echo "- ${DATE}: Daily profile maintenance."
+          } >> "$FILE"
+
+          git config user.name "Advait Kulkarni"
+          git config user.email "171970343+Advait550@users.noreply.github.com"
+
+          git add "$FILE"
+          git commit -m "chore: daily profile maintenance - ${DATE}"
+          git push origin main
