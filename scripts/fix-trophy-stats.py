@@ -75,12 +75,12 @@ def rank_info(score: int, kind: str):
     for i, (rank, message, required) in enumerate(conditions):
         if score >= required:
             next_required = conditions[i - 1][2] if i > 0 else None
-            if next_required is None or next_required == required:
-                progress = 80.0
+            if next_required is None:
+                progress = 1.0
             else:
                 progress = max(
                     0.0,
-                    min(80.0, (score - required) / (next_required - required) * 80.0),
+                    min(1.0, (score - required) / (next_required - required)),
                 )
             return rank, message, f"{score}pt", progress
 
@@ -124,11 +124,10 @@ def repair_card(svg: str, title: str, rank: str, message: str, points: str, prog
         count=1,
     )
 
-    # Progress bar width.
+    # Progress bar width. The renderer uses 80px as the full track width.
     block = re.sub(
-        r'(to )0\.00px(;)'
-        ,
-        rf'\g<1>{progress:.2f}px\g<2>',
+        r'(width: )0\.00px(;)',
+        rf'\g<1>{80.0 * progress:.2f}px\g<2>',
         block,
         count=1,
     )
