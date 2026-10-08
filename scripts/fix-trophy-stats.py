@@ -149,6 +149,11 @@ def main():
     svg = SVG_PATH.read_text(encoding="utf-8")
     svg = repair_card(svg, "Stars", *stars)
     svg = repair_card(svg, "Repositories", *repositories)
+
+    # Keep the zero-progress cards at their actual boundary instead of
+    # inheriting a bar width from a neighbouring SVG fragment.
+    svg = repair_card(svg, "PullRequest", "C", "First Pull", "1pt", 0.0)
+    svg = repair_card(svg, "Followers", "C", "First Friend", "1pt", 0.0)
     SVG_PATH.write_text(svg, encoding="utf-8")
 
     print(
