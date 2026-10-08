@@ -88,52 +88,61 @@ def rank_info(score: int, kind: str):
 
 
 def repair_card(svg: str, title: str, rank: str, message: str, points: str, progress: float):
-    # Card boundaries are separated by the next top-level 110x110 SVG panel.
-    pattern = re.compile(
-        rf'(<svg\s+x="\d+"\s+y="0"\s+width="110".*?'
-        rf'<text[^>]*>{re.escape(title)}</text>.*?)(?=\n        <svg\s+x="\d+"\s+y="0"\s+width="110")',
-        re.DOTALL,
+    # Only match the actual top-level 110x110 trophy panels. Nested SVGs are
+    # used inside each card and must never be treated as separate cards.
+    card_re = re.compile(
+        r'(?ms)^        <svg\\n'
+        r'          x="\\d+"\\n'
+        r'          y="0"\\n'
+        r'          width="110"\\n'
+        r'          height="110".*?'
+        r'(?=^        <svg\\n          x="\\d+"\\n          y="0"\\n'
+        r'          width="110"\\n          height="110"|\\Z)'
     )
-    match = pattern.search(svg)
-    if not match:
+
+    match = None
+    for candidate in card_re.finditer(svg):
+        if f'>{title}</text>' in candidate.group(0):
+            match = candidate
+            break
+
+    if match is None:
         raise RuntimeError(f"Could not find trophy card: {title}")
 
-    block = match.group(1)
+    block = match.group(0)
 
-    # Rank letter inside the trophy icon.
-    block, n = re.subn(
-        r'(<text x="6" y="8" font-family="Courier, Monospace" font-size="7" fill="#0d1117">)\?</text>',
-        rf'\g<1>{rank}</text>',
-        block,
-        count=1,
-    )
-    if n != 1:
-        raise RuntimeError(f"Could not replace rank icon for {title}")
-
-    # Rank message and score.
+    # Set the rank letter regardless of its previous value.
     block = re.sub(
-        r'(<text x="50%" y="85"[^>]*>)Unknown</text>',
-        rf'\g<1>{message}</text>',
-        block,
-        count=1,
-    )
-    block = re.sub(
-        r'(<text x="50%" y="97"[^>]*>)0pt</text>',
-        rf'\g<1>{points}</text>',
+        r'(<text x="6" y="8" font-family="Courier, Monospace" font-size="7" fill="#0d1117">)[A-Z?]</text>',
+        rf'\\g<1>{rank}</text>',
         block,
         count=1,
     )
 
-    # Progress bar width. The renderer uses 80px as the full track width.
+    # Set the rank message and score.
     block = re.sub(
-        r'(width: )0\.00px(;)',
-        rf'\g<1>{80.0 * progress:.2f}px\g<2>',
+        r'(<text x="50%" y="85"[^>]*>)[^<]*</text>',
+        rf'\\g<1>{message}</text>',
         block,
         count=1,
+    )
+    block = re.sub(
+        r'(<text x="50%" y="97"[^>]*>)[^<]*</text>',
+        rf'\\g<1>{points}</text>',
+        block,
+        count=1,
+    )
+
+    # Set only this card's keyframe width. The full bar is 80px.
+    block = re.sub(
+        r'(@keyframes ' + re.escape(title) + r'RankAnimation\\s*\\{.*?to \\{\\s*width: )([0-9.]+)(px;)',
+        rf'\\g<1>{80.0 * progress:.2f}\\g<2>',
+        block,
+        count=1,
+        flags=re.DOTALL,
     )
 
     return svg[:match.start()] + block + svg[match.end():]
-
 
 def main():
     if not SVG_PATH.exists():
