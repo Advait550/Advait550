@@ -42,6 +42,12 @@ jobs:
           path: dist/github-trophies.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Repair Stars and Repositories trophy metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/fix-trophy-stats.py
+
       - name: Generate contribution activity graph
         uses: maurodesouza/github-readme-activity-graph-action@v1
         with:
