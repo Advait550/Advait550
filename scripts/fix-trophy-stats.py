@@ -88,61 +88,61 @@ def rank_info(score: int, kind: str):
 
 
 def repair_card(svg: str, title: str, rank: str, message: str, points: str, progress: float):
-    # Only match the actual top-level 110x110 trophy panels. Nested SVGs are
-    # used inside each card and must never be treated as separate cards.
-    card_re = re.compile(
-        r'(?ms)^        <svg\\n'
-        r'          x="\\d+"\\n'
-        r'          y="0"\\n'
-        r'          width="110"\\n'
-        r'          height="110".*?'
-        r'(?=^        <svg\\n          x="\\d+"\\n          y="0"\\n'
-        r'          width="110"\\n          height="110"|\\Z)'
-    )
+    # Top-level trophy panels begin with exactly 8 spaces followed by <svg>.
+    # Nested SVGs use different indentation, so this cleanly isolates one card.
+    starts = [m.start() for m in re.finditer(r"(?m)^        <svg$", svg)]
+    if not starts:
+        raise RuntimeError("Could not locate top-level trophy panels")
 
-    match = None
-    for candidate in card_re.finditer(svg):
-        if f'>{title}</text>' in candidate.group(0):
-            match = candidate
+    card_index = None
+    for idx, start in enumerate(starts):
+        end = starts[idx + 1] if idx + 1 < len(starts) else len(svg)
+        block = svg[start:end]
+        if f">{title}</text>" in block:
+            card_index = idx
             break
 
-    if match is None:
+    if card_index is None:
         raise RuntimeError(f"Could not find trophy card: {title}")
 
-    block = match.group(0)
+    start = starts[card_index]
+    end = starts[card_index + 1] if card_index + 1 < len(starts) else len(svg)
+    block = svg[start:end]
 
-    # Set the rank letter regardless of its previous value.
+    # Set the rank letter in the badge icon.
     block = re.sub(
         r'(<text x="6" y="8" font-family="Courier, Monospace" font-size="7" fill="#0d1117">)[A-Z?]</text>',
-        rf'\\g<1>{rank}</text>',
+        rf'\g<1>{rank}</text>',
         block,
         count=1,
     )
 
-    # Set the rank message and score.
+    # Set the displayed message and score.
     block = re.sub(
         r'(<text x="50%" y="85"[^>]*>)[^<]*</text>',
-        rf'\\g<1>{message}</text>',
+        rf'\g<1>{message}</text>',
         block,
         count=1,
     )
     block = re.sub(
         r'(<text x="50%" y="97"[^>]*>)[^<]*</text>',
-        rf'\\g<1>{points}</text>',
+        rf'\g<1>{points}</text>',
         block,
         count=1,
     )
 
-    # Set only this card's keyframe width. The full bar is 80px.
-    block = re.sub(
-        r'(@keyframes ' + re.escape(title) + r'RankAnimation\\s*\\{.*?to \\{\\s*width: )([0-9.]+)(px;)',
-        rf'\\g<1>{80.0 * progress:.2f}\\g<2>',
+    # Set only this card's progress bar.
+    block, n = re.subn(
+        r'(@keyframes ' + re.escape(title) + r'RankAnimation\s*\{.*?to\s*\{\s*width:\s*)([0-9.]+)(px;)',
+        rf'\g<1>{80.0 * progress:.2f}\g<3>',
         block,
         count=1,
         flags=re.DOTALL,
     )
+    if n != 1:
+        raise RuntimeError(f"Could not update progress bar for {title}")
 
-    return svg[:match.start()] + block + svg[match.end():]
+    return svg[:start] + block + svg[end:]
 
 def main():
     if not SVG_PATH.exists():
